@@ -23,3 +23,9 @@ docker run --name <DOCKER NAME> busybox:1.29
 
 # Display information about Docker container in json format
 docker inspect <CONTAINER ID>
+
+# Run Docker Tomcat webserver on docker port 8080 and localhost port 8888
+docker run -it --rm -d -p 8888:8080 tomcat:alpine
+
+# See container logs
+docker logs <CONTAINER ID>
