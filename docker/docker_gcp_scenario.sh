@@ -6,7 +6,7 @@ gcloud compute --project=$PROJECT networks create network-docker --subnet-mode=c
 gcloud compute --project=$PROJECT networks subnets create subnet-docker --network=network-docker --region=europe-west2 --range=192.168.90.0/24
 
 ## Create GCP Firewall Rules
-gcloud compute --project=$PROJECT firewall-rules create docker-allow-ports --direction=INGRESS --priority=1000 --network=network-docker --action=ALLOW --rules=tcp:22,icmp --source-ranges=0.0.0.0/0 --target-tags=docker
+gcloud compute --project=$PROJECT firewall-rules create docker-allow-ports --direction=INGRESS --priority=1000 --network=network-docker --action=ALLOW --rules=tcp:22,tcp:8080,tcp:5000,icmp --source-ranges=0.0.0.0/0 --target-tags=docker
 gcloud compute --project=$PROJECT firewall-rules create docker-allow-ports-egress --direction=EGRESS --priority=1000 --network=network-docker --action=ALLOW --rules=all --destination-ranges=0.0.0.0/0 --target-tags=docker
 
 ## Create GCP Compute Instances
