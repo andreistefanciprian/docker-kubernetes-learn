@@ -1,4 +1,5 @@
-
+# install docker
+sudo apt-get install -y docker.io
 
 # use Docker as a non-root user. Log out and back in for this to take effect!
 sudo usermod -aG docker $(whoami)
