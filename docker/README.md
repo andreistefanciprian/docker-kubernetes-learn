@@ -96,6 +96,13 @@ docker container run --rm --network dude centos curl -s search:9200
 ```buildoutcfg
 # List local docker images
 docker image ls
+# Download image localy
+docker pull nginx:1.17.1
+# Display imahe layer history
+docker image history REPOSITORY:TAG
+# Display docker image metadata
+docker image inspect REPOSITORY
+
 ```
 
 # Stop and remove containers
