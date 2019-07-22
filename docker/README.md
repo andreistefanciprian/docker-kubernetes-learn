@@ -103,6 +103,10 @@ docker image history REPOSITORY:TAG
 # Display docker image metadata
 docker image inspect REPOSITORY
 
+# Create a new image and tag it based on current image
+# Make sure you're logged in via CLI (docker login)
+docker image tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
 ```
 
 # Stop and remove containers
