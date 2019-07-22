@@ -109,6 +109,13 @@ docker image tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
 
 ```
 
+# Dockerfile
+```bash
+# Build dockerfile in current dir
+docker image build -t IMAGE_NAME .
+
+```
+
 # Stop and remove containers
 ```buildoutcfg
 
