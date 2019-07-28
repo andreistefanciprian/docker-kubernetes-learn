@@ -1,11 +1,11 @@
-```bash
+```buildoutcfg
 # Build image
 docker image build -t custom_nginx .
 
 # Run container with new nginx image
 docker container run --rm -p 8888:80 nginx_with_html
 
-# Check custom index page
+# Access docker app
 curl http://localhost:8888
 
 # Change tag and push image to dockerhub
