@@ -134,10 +134,15 @@ docker container stop $(docker container ps -a -q)
 
 # To clean up, all unused containers, images, network, and volumes, use the following command.
 docker system prune
+docker system prune -a
 
 # To individually delete all the components, use the following commands.
 docker container prune
 docker image prune
 docker network prune
 docker volume prune
+
+# Check docker used space
+docker system df
+
 ```
