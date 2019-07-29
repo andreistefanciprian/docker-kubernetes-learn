@@ -31,8 +31,8 @@ docker container stats
 # Display how container was built/run
 docker container inspect CONTAINER_NAME
 
-# Display logs
-docker container logs CONTAINER_NAME
+# Display logs continuously
+docker container logs -f CONTAINER_NAME
 ```
 
 
@@ -109,12 +109,14 @@ docker image tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
 
 ```
 
+
 # Dockerfile
 ```bash
 # Build dockerfile in current dir
 docker image build -t IMAGE_NAME .
 
 ```
+
 
 # Stop and remove containers
 ```buildoutcfg
