@@ -16,8 +16,11 @@ services:
     restart: always
   postgres:
     image: postgres
-      restart: always
-      environment:
-        POSTGRES_PASSWORD: pass123
-      volume:
-        - my_db:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pass123
+    volumes:
+      - my_db:/var/lib/postgresql/data
+
+volumes:
+  my_db:
