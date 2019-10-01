@@ -34,7 +34,10 @@ docker container inspect CONTAINER_NAME
 # Display logs continuously
 docker container logs -f CONTAINER_NAME
 ```
-
+# Update running docker container
+```
+docker update --help
+```
 
 # Get a Shell inside container
 ```buildoutcfg

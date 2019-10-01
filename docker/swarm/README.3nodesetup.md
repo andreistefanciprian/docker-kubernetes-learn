@@ -1,0 +1,68 @@
+# Create VM Nodes in GCP
+```
+# Define project
+PROJECT=demos-225120
+
+# Define list of nodes
+nodes=(node1 node2 node3)
+
+# Create instances
+for node in ${nodes[*]}
+do
+	gcloud beta --project=$PROJECT \
+	compute instances create ${node} \
+	--zone=europe-west2-c \
+	--machine-type=f1-micro \
+	--subnet=default \
+	--tags=http-server,https-server \
+	--image=ubuntu-1804-bionic-v20190813a \
+	--image-project=ubuntu-os-cloud
+done
+```
+# ssh into VMs and install docker
+```
+curl -fsSL https://get.docker.com -o get-docker.sh; sh get-docker.sh
+
+# Use docker an non root user
+sudo usermod -aG docker $USER
+```
+# Create GCP firewall rule to allow swarm docker communication between devices
+```
+gcloud compute \
+--project=$PROJECT \
+firewall-rules create docker-swarm \
+--direction=INGRESS \
+--priority=1000 \
+--network=default \
+--action=ALLOW \
+--rules=tcp:2377,tcp:7946,udp:7946,udp:4789 \
+--source-ranges=0.0.0.0/0
+```
+
+# Initialize docker swarm on node1
+```
+docker swarm init --advertise-addr 10.154.0.58
+
+# Join swarm from node2
+docker swarm join --token SWMTKN-1-06tfta00pjkfo2x43t031fh57zw24c87cezdnzfhuxpszb0epb-bg980ljruavjrrxph3pnvxgze 10.154.0.58:2377
+
+# List docker nodes
+docker node ls      # node1
+
+# Promote node2 to manager role
+docker node update --role manager node2
+
+# Join swarm from node3 as manager
+docker swarm join-token manager     # node1
+docker swarm join --token SWMTKN-1-06tfta00pjkfo2x43t031fh57zw24c87cezdnzfhuxpszb0epb-6inam9l43s54vguhfqujs28f8 10.154.0.58:2377
+
+```
+
+# Delete VM Nodes
+```
+for node in ${nodes[*]}
+do
+	gcloud beta --project=$PROJECT \
+	compute instances delete ${node} --quiet
+done
+```
