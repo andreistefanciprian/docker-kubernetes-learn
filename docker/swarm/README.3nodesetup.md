@@ -1,12 +1,12 @@
 # Create VM Nodes in GCP
 ```
 # Define project
-PROJECT=demos-225120
+PROJECT=`gcloud info | grep project | cut -d [ -f2 | cut -d] -f1`
 
 # Define list of nodes
 nodes=(node1 node2 node3)
 
-# Create instances
+# Create instances with docker installed
 for node in ${nodes[*]}
 do
 	gcloud beta --project=$PROJECT \
@@ -15,19 +15,12 @@ do
 	--machine-type=f1-micro \
 	--subnet=default \
 	--tags=http-server,https-server \
-	--image=ubuntu-1804-bionic-v20190813a \
-	--image-project=ubuntu-os-cloud
+	--image=ubuntu-1804-bionic-v20191002 \
+	--image-project=ubuntu-os-cloud \
+	--metadata-from-file=startup-script=startup-script.sh
 done
-```
-# ssh into VMs and install docker
-```
-curl -fsSL https://get.docker.com -o get-docker.sh; sh get-docker.sh
 
-# Use docker an non root user
-sudo usermod -aG docker $USER
-```
 # Create GCP firewall rule to allow swarm docker communication between devices
-```
 gcloud compute \
 --project=$PROJECT \
 firewall-rules create docker-swarm \
