@@ -46,8 +46,29 @@ docker node ls      # node1
 docker node update --role manager node2
 
 # Join swarm from node3 as manager
-docker swarm join-token manager     # node1
+# Execute command on node1
+docker swarm join-token manager
+# Execute command on node3
 docker swarm join --token SWMTKN-1-06tfta00pjkfo2x43t031fh57zw24c87cezdnzfhuxpszb0epb-6inam9l43s54vguhfqujs28f8 10.154.0.58:2377
+
+```
+
+# Create docker services
+```buildoutcfg
+docker service create --replicas 3 alpine ping 8.8.8.8
+
+# Display running containers
+docker node ps
+docker node ps node2
+docker node ps node3
+
+# Display full list of container running on all nodes
+docker service ps SERVICE_NAME
+
+# Update docker service 
+docker service update keen_hermann --replicas 4
+
+docker service ls
 
 ```
 
