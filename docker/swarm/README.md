@@ -23,4 +23,7 @@ docker service update SERVICE_ID/SERVICE_NAME --replicas 3
 
 # Remove docker service
 docker service rm SERVICE_ID/SERVICE_NAME
+
+# Remove all docker services
+docker service rm `docker service ls -q`
 ```
