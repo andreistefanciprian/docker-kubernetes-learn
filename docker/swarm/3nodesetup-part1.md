@@ -1,5 +1,6 @@
 # Create VM Nodes in GCP
 ```
+
 # Define project
 PROJECT=`gcloud info | grep project | cut -d [ -f2 | cut -d] -f1`
 
@@ -74,6 +75,10 @@ docker service ls
 
 # Delete VM Nodes
 ```
+
+PROJECT=`gcloud info | grep project | cut -d [ -f2 | cut -d] -f1`
+nodes=(node1 node2 node3)
+
 for node in ${nodes[*]}
 do
 	gcloud beta --project=$PROJECT \
