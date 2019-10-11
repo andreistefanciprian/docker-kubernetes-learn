@@ -62,3 +62,18 @@ docker volume rm `docker volume ls -q`
 ```html
 https://training.play-with-docker.com/linux-registry-part2/
 ```
+
+# Docker registry in swarm
+
+```bash
+# Create local registry service
+docker service create --name registry --publish 5000:5000 registry
+
+docker image pull nginx
+docker tag nginx 127.0.0.1:5000/nginx
+docker image push 127.0.0.1:5000/nginx
+
+# Create docker service using image from registry
+docker service create --name nginx --publish 8080:80 --replicas 5  --detach=false 127.0.0.1:5000/nginx
+
+```
