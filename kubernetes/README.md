@@ -74,7 +74,8 @@ kubectl delete deployment my-nginx
 
 
 # Services
-````
+```bash
+
 # Deploy deployment
 kubectl create deployment httpenv --image bretfisher/httpenv
 
@@ -93,13 +94,35 @@ kubectl run --generator=run-pod/v1 tmp-shell --rm -it --image bretfisher/netshoo
 curl httpenv:8888
 
 # Create a NodePort service
-kubectl expose deployment/httpenv --port 8888 --name htttpenv-np --type NodePort
+kubectl expose deployment/httpenv --port 8888 --name httpenv-np --type NodePort
 curl 127.0.0.1:30204
 
 # Build LB
-kubectl expose deployment/httpenv --port 8888 --name htttpenv-lb --type LoadBalancer
+kubectl expose deployment/httpenv --port 8888 --name httpenv-lb --type LoadBalancer
 curl 127.0.0.1:8888
 
 # Remove services and objects
 kubectl delete service/httpenv service/httpenv-np service/httpenv-lb deployment/httpenv
-````
+```
+
+# Generators
+
+```bash
+
+kubectl create deployment nginx --image nginx --dry-run -o yaml
+
+kubectl create job nginx --image nginx --dry-run -o yaml
+
+kubectl expose deployment/test --port 80 --dry-run -o yaml
+```
+
+# Other stuff
+
+```yaml
+kubectl get namespaces
+kubectl get all --all-namespaces
+vim ~/.kube/config
+kubectl config get-contexts
+kubectl config set*
+
+```
