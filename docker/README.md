@@ -1,10 +1,12 @@
 # Help
+
 ```buildoutcfg
 docker container run --help
 ```
 
 
 # Start a container
+
 ```buildoutcfg
 # Run nginx (alpine image) docker container on 8080 locahost port, 80 docker port
 docker container run --publish 8080:80 --detach --name web1 nginx:alpine
@@ -15,6 +17,7 @@ docker container run --publish 8080:80 --detach --name web1 nginx:alpine nginx -
 
 ```
 # Monitoring
+
 ```buildoutcfg
 # List running containers
 docker container ls
@@ -35,11 +38,13 @@ docker container inspect CONTAINER_NAME
 docker container logs -f CONTAINER_NAME
 ```
 # Update running docker container
+
 ```
 docker update --help
 ```
 
 # Get a Shell inside container
+
 ```buildoutcfg
 # Build mysql docker container
 docker container run --name=mysql -e MYSQL_RANDOM_ROOT_PASSWORD=yes -p 3306:3306 -d mysql
@@ -64,6 +69,7 @@ docker container start -ai ubuntu
 
 
 # Networking
+
 ```buildoutcfg
 # List open ports inside container
 docker container port CONTAINER_NAME
@@ -96,12 +102,13 @@ docker container run --rm --network dude centos curl -s search:9200
 
 
 # Docker images
+
 ```buildoutcfg
 # List local docker images
 docker image ls
 # Download image localy
 docker pull nginx:1.17.1
-# Display imahe layer history
+# Display image layer history
 docker image history REPOSITORY:TAG
 # Display docker image metadata
 docker image inspect REPOSITORY
@@ -110,12 +117,7 @@ docker image inspect REPOSITORY
 # Make sure you're logged in via CLI (docker login)
 docker image tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
 
-```
-
-
-# Dockerfile
-```bash
-# Build dockerfile in current dir
+# Build docker image from Dockerfile in current dir
 docker image build -t IMAGE_NAME .
 
 ```
