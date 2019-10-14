@@ -1,6 +1,9 @@
 
 # YAML file parts
 ```yaml
+
+apiVersion:
+
 kind:
 kubectl api-resources
 
@@ -16,7 +19,7 @@ spec:
 
 # Commands to discover specs
 
-```text
+```buildoutcfg
 
 # Get a list of all keys each kind supports
 kubectl explain services --recursive
@@ -29,7 +32,7 @@ kubectl explain deployment.spec.template.spec.volumes.nfs.server
 
 # Apply YAMLs
 
-```bash
+```buildoutcfg
 
 kubectl apply -f app.yml
 
@@ -38,7 +41,7 @@ kubectl apply -f app.yml
 # Dry-run and diff
 
 
-```bash
+```buildoutcfg
 
 kubectl apply -f app.yml --dry-run
 kubectl apply -f app.yml --server-dry-run
@@ -52,7 +55,7 @@ kubectl diff -f app.yml
 
 # Labels
 
-```bash
+```buildoutcfg
 
 # Get list of pods by label filtering
 kubectl get pods -l app=nginx
@@ -60,4 +63,11 @@ kubectl get pods -l app=nginx
 # Apply only matching labels
 kubectl apply -f app.yaml -l app=nginx
 
+```
+
+# Cleanup
+
+```buildoutcfg
+
+kubectl delete -f app.yaml
 ```
