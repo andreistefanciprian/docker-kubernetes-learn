@@ -10,7 +10,7 @@ kubectl version
 
 # Deploy pods (command line or YAML)
 
-```text
+```buildoutcfg
 
 # Create pod
 kubectl run my-nginx --image nginx
@@ -19,7 +19,7 @@ kubectl run my-nginx --image nginx
 
 # ReplicaSets
 
-```text
+```buildoutcfg
 # Create pod
 kubectl run my-apache --image httpd
 
@@ -32,7 +32,7 @@ kubectl scale deployment my-apache --replicas 2
 
 # Inspect Kubernetes Objects
 
-```text
+```buildoutcfg
 
 # List pods
 kubectl get pods
@@ -56,7 +56,7 @@ kubectl describe pod/POD_NAME
 
 # Delete pod
 
-```text
+```buildoutcfg
 
 # Delete pod
 kubectl delete pod/POD_NAME
@@ -68,13 +68,13 @@ kubectl get pods -w
 
 # Cleanup
 
-```text
+```buildoutcfg
 kubectl delete deployment my-nginx
 ```
 
 
 # Services
-```bash
+```buildoutcfg
 
 # Deploy deployment
 kubectl create deployment httpenv --image bretfisher/httpenv
@@ -107,7 +107,7 @@ kubectl delete service/httpenv service/httpenv-np service/httpenv-lb deployment/
 
 # Generators
 
-```bash
+```buildoutcfg
 
 kubectl create deployment nginx --image nginx --dry-run -o yaml
 
@@ -118,7 +118,7 @@ kubectl expose deployment/test --port 80 --dry-run -o yaml
 
 # Other stuff
 
-```yaml
+```buildoutcfg
 kubectl get namespaces
 kubectl get all --all-namespaces
 vim ~/.kube/config
