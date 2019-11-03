@@ -3,8 +3,7 @@
 
 ```buildoutcfg
 
-# Create one node GKE
-gcloud beta container --project "aerial-utility-246511" \
+GKE-acloudgurugcloud beta container --project "aerial-utility-246511" \
 clusters create "your-first-cluster-1" \
 --zone "us-central1-a" \
 --no-enable-basic-auth \
@@ -22,8 +21,7 @@ clusters create "your-first-cluster-1" \
 --enable-autorepair \
 --no-shielded-integrity-monitoring
 
-# Use CloudShell to authenticate kubectl with GKE
-gcloud container clusters get-credentials your-first-cluster-1 --zone=us-central1-a
+GKE-acloudgurugcloud container clusters get-credentials your-first-cluster-1 --zone=us-central1-a
 
 # Run nginx pod
 kubectl run nginx --image=nginx

@@ -3,8 +3,7 @@
 
 ```buildoutcfg
 
-# Build standard GKE 3 Nodes Cluster
-gcloud beta container --project "aerial-utility-246511" \
+GKE-acloudgurugcloud beta container --project "aerial-utility-246511" \
 clusters create "standard-cluster-1" \
 --zone "europe-west2-c" \
 --no-enable-basic-auth \
@@ -19,8 +18,7 @@ clusters create "standard-cluster-1" \
 --addons HorizontalPodAutoscaling,HttpLoadBalancing \
 --enable-autoupgrade --enable-autorepair 
 
-# Authenticate kubectl with GKE
-gcloud container clusters get-credentials standard-cluster-1 --zone=europe-west2-c
+GKE-acloudgurugcloud container clusters get-credentials standard-cluster-1 --zone=europe-west2-c
 
 
 # Apply volume claims

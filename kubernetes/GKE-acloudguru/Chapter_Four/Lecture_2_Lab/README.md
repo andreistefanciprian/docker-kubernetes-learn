@@ -87,6 +87,5 @@ helm status mybooks
 
 # Cleanup
 ```buildoutcfg
-# Delete GKE Cluster
-gcloud beta container clusters delete standard-cluster-1 -q
+GKE-acloudgurugcloud beta container clusters delete standard-cluster-1 -q
 ```

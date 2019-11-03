@@ -103,6 +103,5 @@ while true; do curl http://LoadBalancerGlobalIPAddress/ ; sleep 0.5; done
 
 # Cleanup
 ```buildoutcfg
-# Delete GKE Cluster
-gcloud beta container clusters delete standard-cluster-1 -q
+GKE-acloudgurugcloud beta container clusters delete standard-cluster-1 -q
 ```

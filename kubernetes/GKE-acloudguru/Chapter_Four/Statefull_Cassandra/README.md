@@ -15,8 +15,7 @@ gcloud container clusters get-credentials cluster-1 --zone=europe-west2-c
 
 ### Deploy a StatefulSet to run Cassandra
 ```buildoutcfg
-# Apply storage class and headless service to GKE cluster
-kubectl apply -f ssd-class.yaml
+GKE-acloudgurukubectl apply -f ssd-class.yaml
 kubectl apply -f cassandra-service.yaml
 
 # Check resources
@@ -57,8 +56,7 @@ kubectl get pv
 
 # Cleanup
 ```buildoutcfg
-# Delete GKE Cluster
-gcloud container clusters delete cluster-1 -q
+GKE-acloudgurugcloud container clusters delete cluster-1 -q
 ```
 
 # Part 2: Lab Objectives:
