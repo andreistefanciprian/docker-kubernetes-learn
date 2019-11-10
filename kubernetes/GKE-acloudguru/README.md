@@ -1,11 +1,13 @@
 # Course GKE Beginner to Pro from https://acloud.guru
 
 
-# Prereguisites
+# Prerequisites
+
 Verify GKE and Container Registry APIs are enabled in GCP
 
 # Run a simple nginx server on GKE
 ```buildoutcfg
+
 # define variables
 export MY_ZONE=us-central1-a
 
@@ -25,7 +27,8 @@ kubectl get services
 # scale deployment
 kubectl scale deployment nginx --replicas 3
 
-GKE-acloudgurukubectl delete deployment nginx
+# cleanup
+kubectl delete deployment nginx
 kubectl delete service nginx
 gcloud beta container clusters delete webfrontend -q
 

@@ -1,6 +1,7 @@
 
 
 ```buildoutcfg
+PROJECT_ID=<PROJECT-ID>
 
 # Build and push image to Google Container Register
 gcloud builds submit --config cloudbuild.yaml .
