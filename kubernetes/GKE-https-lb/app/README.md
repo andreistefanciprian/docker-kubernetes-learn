@@ -7,7 +7,7 @@ export PROJECT_ID=aerial-utility-246511
 export MY_ZONE=europe-west1-c
 
 # build GKE cluster
-gcloud container clusters create myapp --zone $MY_ZONE --num-nodes 2 --disk-size "20" --machine-type "n1-standard-1"
+gcloud container clusters create myapp --zone $MY_ZONE --num-nodes 1 --disk-size "20" --machine-type "n1-standard-1"
 # authenticate GKE cluster
 gcloud container clusters get-credentials myapp --zone=$MY_ZONE
 

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: kubectl run nginx --image=nginx --labels=app=my-nginx
+      --restart=Always --port=80 --record=true --dry-run=true --output=yaml
+  creationTimestamp: null
+  labels:
+    app: my-nginx
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: my-nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

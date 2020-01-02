@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: kubectl run nginx --image=nginx --restart=Always --requests=cpu=200m,memory=200Mi
+      --port=80 --labels=app=nginx,env=test --dry-run=true --output=yaml --record=true
+  creationTimestamp: null
+  labels:
+    app: nginx
+    env: test
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      env: test
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+        env: test
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+status: {}

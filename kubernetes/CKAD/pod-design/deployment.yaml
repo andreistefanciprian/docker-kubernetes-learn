@@ -1,0 +1,36 @@
+#kubectl run nginx --image nginx --replicas 3 --restart=Always --port 80 --dry-run -o yaml --record
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: nginx
+  name: nginx
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/nginx
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 10
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      run: nginx
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 2
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: nginx
+    spec:
+      containers:
+      - image: nginx:1.9.1
+        imagePullPolicy: Always
+        name: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+
+      restartPolicy: Always

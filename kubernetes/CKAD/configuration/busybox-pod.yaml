@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox
+  name: busybox
+spec:
+
+#  securityContext: # add security context
+#    runAsUser: 1000
+#    runAsGroup: 2000
+  serviceAccountName: admin
+  # define volume to get data from configmap and secrets
+  volumes:
+  - name: secret-volume
+    secret:
+      secretName: ssh-key-secret
+  - name: cmap-volume
+    configMap:
+      name: my-cm1
+
+  containers:
+  - image: busybox
+    name: busybox
+
+    securityContext:
+#      runAsUser: 2000
+      capabilities:
+        add: ["SYS_TIME", "NET_ADMIN"]
+
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "500m"
+      limits:
+        memory: "200Mi"
+        cpu: "1000m"
+
+    volumeMounts:
+      # mount configmap as volume
+      - name: cmap-volume
+        mountPath: /etc/cfg
+      # mount secrets as volume
+      - name: secret-volume
+        readOnly: true
+        mountPath: /etc/secret-volume
+
+
+    command: [ "/bin/sh", "-c", "env && sleep 3600" ]
+
+#    # get env vars from env file (--from-env-file)
+#    envFrom:
+#      - configMapRef:
+#          name: my-cm3
+
+#    # get env vars from file (--from-file)
+#    envFrom:
+#      - configMapRef:
+#          name: my-cm2
+    envFrom:
+      - secretRef:
+          name: my-secret
+
+    env:
+      # get env from configmap key value pairs (--from-literal)
+      - name: VAR1
+        valueFrom:
+          configMapKeyRef:
+            name: my-cm1
+            key: key1
+      - name: VAR2
+        valueFrom:
+          configMapKeyRef:
+            name: my-cm1
+            key: key2
+      # define env var from secrets
+      - name: SECRET_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: my-secret
+            key: username
+      - name: SECRET_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: my-secret
+            key: password
+
+  restartPolicy: Never
+

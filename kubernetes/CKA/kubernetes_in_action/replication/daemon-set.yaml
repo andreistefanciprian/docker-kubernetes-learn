@@ -1,0 +1,28 @@
+apiVersion: apps/v1beta2
+kind: DaemonSet
+metadata:
+  labels:
+    run: kubia
+  name: kubia
+spec:
+  selector:
+    matchExpressions:
+      - key: run
+        operator: In
+        values:
+          - kubia
+#    matchLabels:
+#      run: kubia
+  template:
+    metadata:
+      labels:
+        run: kubia
+    spec:
+      nodeSelector:
+        disk: ssd
+      containers:
+      - image: andreistefanciprian/kubia
+        imagePullPolicy: IfNotPresent
+        name: kubia
+        ports:
+        - containerPort: 8080

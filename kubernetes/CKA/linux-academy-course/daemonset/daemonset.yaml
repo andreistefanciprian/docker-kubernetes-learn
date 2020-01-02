@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  selector:
+    matchLabels:
+      run: busybox
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: busybox
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - image: busybox
+        name: busybox
+        args:
+        - /bin/sh
+        - -c
+        - sleep 3600

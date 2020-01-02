@@ -5,7 +5,7 @@ metadata:
   labels:
     app: myapp
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: myapp
@@ -16,7 +16,16 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: gcr.io/aerial-utility-246511/nginx-custom-image
+#        image: gcr.io/aerial-utility-246511/nginx-custom-image
+        image: nginx
         ports:
         - containerPort: 80
-
+        args:
+          - bin/sh
+          - -c
+          - echo $(MY_POD_IP) >/usr/share/nginx/html/index.html; sleep 3600
+        env:
+          - name: MY_POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP

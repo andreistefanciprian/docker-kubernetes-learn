@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  labels:
+    run: kubia
+  name: kubia
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: run
+        operator: In
+        values:
+          - kubia
+#    matchLabels:
+#      run: kubia
+  template:
+    metadata:
+      labels:
+        run: kubia
+    spec:
+      containers:
+      - image: andreistefanciprian/kubia
+        imagePullPolicy: IfNotPresent
+        name: kubia
+        ports:
+        - containerPort: 8080

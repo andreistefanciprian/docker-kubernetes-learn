@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      run: busybox
+  template:
+    metadata:
+      labels:
+        run: busybox
+    spec:
+      containers:
+      - args:
+        - /bin/sh
+        - -c
+        - sleep 3600
+        image: busybox
+        name: busybox
+      tolerations:
+      - key: "node-type"
+        operator: "Exists"
+        effect: "NoSchedule"

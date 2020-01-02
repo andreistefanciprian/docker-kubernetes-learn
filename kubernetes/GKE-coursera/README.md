@@ -133,12 +133,14 @@ kubectl rollout pause deployment <deployment-name>
 kubectl rollout resume deployment <deployment-name>
 kubectl rollout status deployment <deployment-name>
 
-kubectl delete deployment <deployment-name>     # delete deployment
-
+# delete deployment
+kubectl delete deployment <deployment-name>
 
 # trigger a rolling update
 kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.9.1 --record
 
+# Run a temporary Pod with the app=foo label and get a shell prompt inside the container.
+kubectl run test-3 --labels app=foo --image=alpine --restart=Never --rm --stdin --tty
 ```
 
 # service
@@ -146,9 +148,12 @@ kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.9.1 --record
 ```bash
 kubectl expose deployment <deployment-name> --target-port=8080 --type=NodePort
 
+# Run a simple web server application with the label app=hello, and expose the web application internally in the cluster
+kubectl run hello-web --labels app=hello --image=gcr.io/google-samples/hello-app:1.0 --port 8080 --expose
+
 ```
 
-# taint
+# taints
 
 Taints allow a node to repel Pods.
 
@@ -158,3 +163,41 @@ kubectl taint nodes <node-name> key=value:NoSchedule
 ```
 
 You can configure nodes to tolerate taints.
+
+
+# ingress service
+
+```bash
+# update
+kubectl edit ingress <name>
+
+# replace
+kubectl replace -f <file>
+
+```
+
+# Network policies
+
+```bash
+
+# enable a network policy for a new cluster
+gcloud container clusters create <name> --enable-network-policy
+
+# enable a network policy for an existing cluster
+gcloud container clusters update <name> --update-addons-NetworkPolicy=ENABLED
+gcloud container clusters update <name> --enable-network-policy
+
+# disable network policy for a cluster
+gcloud container clusters create <name> --no-enable-network-policy
+ 
+kubectl apply -f networkpolicy.yaml
+kubectl get networkpolicy
+kubectl describe network policy <policy-name>
+```
+
+# ConfigMap
+
+```bash
+kubectl create configmap <name> --from-literal=<key-name>=<key-value>
+kubectl create configmap <name> --from-file=<key-name>=<file-path>
+```

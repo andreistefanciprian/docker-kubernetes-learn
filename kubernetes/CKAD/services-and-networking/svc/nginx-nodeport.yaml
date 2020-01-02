@@ -1,0 +1,21 @@
+# kubectl create service nodeport nginx --tcp=8080:80 --dry-run -o yaml >nginx-nodeport.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  ports:
+  - name: 8080-80
+    port: 8080
+    nodePort: 30001
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: NodePort
+status:
+  loadBalancer: {}

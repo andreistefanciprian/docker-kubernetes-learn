@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: busybox
+    spec:
+      containers:
+      - args:
+        - /bin/sh
+        - -c
+        - i=10; while [ $i -le 20 ]; do echo $i; i=$(( i+1 )); sleep 1; done
+        image: busybox
+        name: busybox
+        resources: {}
+      restartPolicy: OnFailure
+status: {}

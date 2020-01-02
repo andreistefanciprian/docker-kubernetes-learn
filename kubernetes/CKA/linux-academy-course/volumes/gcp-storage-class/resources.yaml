@@ -1,0 +1,43 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: fast
+provisioner: kubernetes.io/gce-pd
+parameters:
+#  type: pd-standard
+  type: pd-ssd
+  replication-type: none
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: myclaim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: fast
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: busybox
+    imagePullPolicy: IfNotPresent
+    name: busybox
+    args:
+      - /bin/sh
+      - -c
+      - sleep 3600
+    volumeMounts:
+    - mountPath: /test-pd
+      name: test-volume
+  volumes:
+  - name: test-volume
+    persistentVolumeClaim:
+      claimName: myclaim
