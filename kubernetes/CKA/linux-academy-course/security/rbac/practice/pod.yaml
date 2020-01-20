@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: curl
+  name: curl
+  namespace: web
+spec:
+  containers:
+  - command:
+    - sleep
+    - "3600"
+    image: curlimages/curl
+    imagePullPolicy: IfNotPresent
+    name: curl
+    resources: {}
+
+  - name: proxy
+    image: linuxacademycontent/kubectl-proxy
+
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+  serviceAccountName: admin
+status: {}

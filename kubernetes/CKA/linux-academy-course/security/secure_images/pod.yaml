@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  containers:
+  - args:
+    - /bin/sh
+    - -c
+    - sleep 3600
+    image: gcr.io/aerial-utility-246511/busybox:1.28.4
+    imagePullPolicy: Always
+    name: busybox

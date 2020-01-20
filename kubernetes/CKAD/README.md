@@ -43,11 +43,22 @@ kubectl set image pod/<pod-name> <pod-name>=nginx
 ## Monitoring
 ```buildoutcfg
 
+# node container logs
+ls -larth /var/log/containers
+
 # check logs of previous container if any
-kubectl get logs <pod-name> -c <container-name> --previous
+kubectl logs <pod-name> -c <container-name> --previous
 
 # get container logs with timestamp
-kubectl get logs <pod-name> -c <container-name> -f --timestamps
+kubectl logs <pod-name> -c <container-name> -f --timestamps
+
+# get logs from all containers within a pod
+kubectl logs <pod-name> --all-containers
+
+
+kubectl logs curl --tail 20
+kubectl logs curl --since 1m
+kubectl logs deployment/nginx -c nginx
 
 # verify events
 kubectl get events
