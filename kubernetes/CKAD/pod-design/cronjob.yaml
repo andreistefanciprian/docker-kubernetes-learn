@@ -1,0 +1,28 @@
+# kubectl create cronjob busybox --image busybox --schedule="*/1 * * * *" --dry-run -o yaml -- /bin/sh -c "echo Hello World && sleep 5" > cronjob.yaml
+
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: busybox
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: busybox
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - command:
+            - /bin/sh
+            - -c
+            - echo Hello World && sleep 5
+            image: busybox
+            name: busybox
+            resources: {}
+          restartPolicy: OnFailure
+  schedule: '*/1 * * * *'
+status: {}

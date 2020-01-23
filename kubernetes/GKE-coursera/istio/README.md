@@ -12,7 +12,7 @@ All deployment steps detailed at: https://www.qwiklabs.com/focuses/616?parent=ca
 ```bash
 
 # define variables
-my_zone=us-central1-f
+my_zone=europe-west1-c
 
 # set the default compute zone
 gcloud config set compute/zone $my_zone

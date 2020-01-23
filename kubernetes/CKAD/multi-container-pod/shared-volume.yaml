@@ -1,0 +1,43 @@
+#Create a Pod with main container busybox
+#  which executes this “while true; do echo ‘Hi I am from Main container’ >> /var/log/index.html; sleep 5; done”
+#  and with sidecar container with nginx image which exposes on port 80.
+#  Use emptyDir Volume and mount this volume on path /var/log for busybox and on path /usr/share/nginx/html for nginx container.
+#  Verify both containers are running.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: shared-volume
+  name: shared-volume
+spec:
+
+  volumes:
+    - name: shared-volume
+      emptyDir: {}
+
+  containers:
+
+  - name: busybox
+    args:
+    - /bin/sh
+    - -c
+    - while true; do echo ‘Hi I am from Main container’ >> /var/log/index.html; sleep 5; done
+    image: busybox
+    volumeMounts:
+      - mountPath: /var/log
+        name: shared-volume
+
+  - name: nginx
+    image: nginx
+    ports:
+      - containerPort: 80
+    volumeMounts:
+      - mountPath: /usr/share/nginx/html
+        name: shared-volume
+
+  restartPolicy: Never
+
+#  verify
+# kubectl exec -ti shared-volume -c busybox -- tail -f /var/log/index.html
+# kubectl exec -ti shared-volume -c nginx -- tail -f /usr/share/nginx/html/index.html

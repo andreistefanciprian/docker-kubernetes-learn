@@ -1,0 +1,40 @@
+#Create a Pod with three busy box containers with commands “ls; sleep 3600;”, “echo Hello World; sleep 3600;” and “echo this is the third container; sleep 3600” respectively and check the status
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: multi
+  name: multi
+spec:
+  containers:
+
+  - args:
+    - /bin/sh
+    - -c
+    - ls; sleep 3600
+    image: busybox
+    name: c1
+
+  - args:
+    - /bin/sh
+    - -c
+    - echo Hello World; sleep 3600
+    image: busybox
+    name: c2
+
+  - args:
+    - /bin/sh
+    - -c
+    - echo this is the third container; sleep 3600
+    image: busybox
+    name: c3
+
+  restartPolicy: Never
+
+#Check the logs of each container that you just created
+#kubectl logs busybox -c busybox1
+#kubectl logs busybox -c busybox2
+#kubectl logs busybox -c busybox3
+
+#Check the previous logs of the second container busybox2 if any
+#kubectl logs busybox -c busybox2 --previous

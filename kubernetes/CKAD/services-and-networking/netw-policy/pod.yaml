@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubernetes.io/change-cause: kubectl run nginx --image=nginx --port=80 --labels=app=secure-app
+      --restart=Never --dry-run=true --output=yaml --record=true
+  creationTimestamp: null
+  labels:
+    app: secure-app
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

@@ -1,0 +1,265 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2019-12-12T15:42:01Z",
+                "labels": {
+                    "run": "busybox"
+                },
+                "name": "busybox",
+                "namespace": "default",
+                "resourceVersion": "3527152",
+                "selfLink": "/api/v1/namespaces/default/pods/busybox",
+                "uid": "f073a512-1cf5-11ea-973b-025000000001"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "args": [
+                            "/bin/sh",
+                            "-c",
+                            "sleep 3333"
+                        ],
+                        "image": "busybox",
+                        "imagePullPolicy": "Always",
+                        "name": "busybox",
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-jrwvw",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "docker-desktop",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "default-token-jrwvw",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-jrwvw"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-12T15:42:01Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-12T15:42:05Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-12T15:42:05Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-12T15:42:01Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://ce2bed70ceafde1919fddde5d136583d76f379e55f479d2f70c6ea2104379a31",
+                        "image": "busybox:latest",
+                        "imageID": "docker-pullable://busybox@sha256:1828edd60c5efd34b2bf5dd3282ec0cc04d47b2ff9caa0b6d4f07a21d1c08084",
+                        "lastState": {},
+                        "name": "busybox",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "running": {
+                                "startedAt": "2019-12-12T15:42:05Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "192.168.65.3",
+                "phase": "Running",
+                "podIP": "10.1.0.188",
+                "qosClass": "BestEffort",
+                "startTime": "2019-12-12T15:42:01Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2019-12-12T15:46:41Z",
+                "generateName": "nginx-755464dd6c-",
+                "labels": {
+                    "pod-template-hash": "755464dd6c",
+                    "run": "nginx"
+                },
+                "name": "nginx-755464dd6c-qvs98",
+                "namespace": "default",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "nginx-755464dd6c",
+                        "uid": "9730d8e0-1cf6-11ea-973b-025000000001"
+                    }
+                ],
+                "resourceVersion": "3527570",
+                "selfLink": "/api/v1/namespaces/default/pods/nginx-755464dd6c-qvs98",
+                "uid": "9734df5d-1cf6-11ea-973b-025000000001"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "image": "nginx",
+                        "imagePullPolicy": "Always",
+                        "name": "nginx",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-jrwvw",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "docker-desktop",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "default-token-jrwvw",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-jrwvw"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-12T15:46:41Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-12T15:47:29Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-12T15:47:29Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-12T15:46:41Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://dd41713e93e5eb506ca6025f7ee163274d48f74833702ad44890d0a92ca0449a",
+                        "image": "nginx:latest",
+                        "imageID": "docker-pullable://nginx@sha256:50cf965a6e08ec5784009d0fccb380fc479826b6e0e65684d9879170a9df8566",
+                        "lastState": {},
+                        "name": "nginx",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "running": {
+                                "startedAt": "2019-12-12T15:47:29Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "192.168.65.3",
+                "phase": "Running",
+                "podIP": "10.1.0.189",
+                "qosClass": "BestEffort",
+                "startTime": "2019-12-12T15:46:41Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": "",
+        "selfLink": ""
+    }
+}

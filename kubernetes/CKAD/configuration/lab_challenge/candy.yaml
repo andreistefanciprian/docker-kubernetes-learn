@@ -1,0 +1,40 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: candy
+  name: candy
+spec:
+  serviceAccountName: candy-svc
+  securityContext:
+    fsGroup: 2000
+  containers:
+#  - image: linuxacademycontent/candy-service:1
+  - image: busybox
+    name: candy
+
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    env:
+      - name: DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: db-password
+            key: password
+
+    command: [ "/bin/sh", "-c", "sleep 3600" ]
+
+    volumeMounts:
+      - name: config-volume
+        mountPath: /etc/candy-service
+  volumes:
+    - name: config-volume
+      configMap:
+        name: candy-service-config
+  restartPolicy: Never

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubernetes.io/change-cause: kubectl expose rc kubia --type=NodePort --port=8888
+      --target-port=8080 --dry-run=true --output=yaml --record=true
+  creationTimestamp: null
+  labels:
+    run: kubia
+  name: kubia
+spec:
+  ports:
+  - port: 8888
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: kubia
+  type: NodePort
+status:
+  loadBalancer: {}
