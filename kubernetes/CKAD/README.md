@@ -205,6 +205,13 @@ kubectl expose deployment nginx --port 80 --type NodePort --name nginx
 kubectl run busybox --image busybox --restart=Never -it --rm -- /bin/sh -c "while true; do wget -q -O- http://nginx:80; sleep 5; done"
 curl <node-ip>:<nodeport>
 
+# Test service recheability
+kubectl get endpoints
+kubectl run curl --image curlimages/curl --restart Never --command -- sleep 3600
+kubectl exec -ti curl -- sh
+curl nginx.default.svc.cluster.local:8080
+curl 10-244-1-6.default.Pod.cluster.local:8080
+
 ```
 
 ## Cleanup
