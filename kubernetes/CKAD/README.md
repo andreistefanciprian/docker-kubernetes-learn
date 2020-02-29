@@ -208,9 +208,8 @@ curl <node-ip>:<nodeport>
 # Test service recheability
 kubectl get endpoints
 kubectl run curl --image curlimages/curl --restart Never --command -- sleep 3600
-kubectl exec -ti curl -- sh
-curl nginx.default.svc.cluster.local:8080
-curl 10-244-1-6.default.Pod.cluster.local:8080
+kubectl exec -ti curl -- /bin/sh -c "while true; do curl -I 10-244-1-2.default.Pod.cluster.local:8080 ; sleep 0.5; done"
+kubectl exec -ti curl -- /bin/sh -c "while true; do curl -I nginx.default.svc.cluster.local:8080 ; sleep 0.5; done"
 
 ```
 
