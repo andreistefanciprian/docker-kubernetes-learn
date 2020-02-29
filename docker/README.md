@@ -139,6 +139,9 @@ docker container rm -f CONTAINER_ID1
 docker container stop $(docker container ps -a -q)
 docker container rm $(docker container ps -a -q)
 
+# Remove all images
+docker rmi $(docker images -aq)
+
 # To clean up, all unused containers, images, network, and volumes, use the following command.
 docker system prune
 docker system prune -af
