@@ -45,7 +45,7 @@ create-with-container INSTANCE_NAME \
 --metadata=google-logging-enabled=true \
 --tags=container,http-server,https-server \
 --image=cos-stable-77-12371-89-0 --image-project=cos-cloud \
---container-image=gcr.io/aerial-utility-246511/myapp:latest 
+--container-image=gcr.io/google-project-name-here/myapp:latest 
 --container-restart-policy=always 
 --reservation-affinity=any
 

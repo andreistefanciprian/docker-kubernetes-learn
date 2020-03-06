@@ -2,7 +2,7 @@
 
 
 # define variables
-export PROJECT_ID=aerial-utility-246511
+export PROJECT_ID=google-project-name-here
 #export MY_ZONE=europe-west1-c
 export MY_REGION=europe-west1
 

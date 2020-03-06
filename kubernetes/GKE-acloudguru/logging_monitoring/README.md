@@ -3,7 +3,7 @@
 
 ```buildoutcfg
 
-GKE-acloudgurugcloud beta container --project "aerial-utility-246511" \
+GKE-acloudgurugcloud beta container --project "google-project-name-here" \
 clusters create "your-first-cluster-1" \
 --zone "us-central1-a" \
 --no-enable-basic-auth \
@@ -13,8 +13,8 @@ clusters create "your-first-cluster-1" \
 --num-nodes "1" \
 --enable-stackdriver-kubernetes \
 --enable-ip-alias \
---network "projects/aerial-utility-246511/global/networks/default" \
---subnetwork "projects/aerial-utility-246511/regions/us-central1/subnetworks/default" \
+--network "projects/google-project-name-here/global/networks/default" \
+--subnetwork "projects/google-project-name-here/regions/us-central1/subnetworks/default" \
 --default-max-pods-per-node "110" \
 --addons HorizontalPodAutoscaling,HttpLoadBalancing \
 --enable-autoupgrade \

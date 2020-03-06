@@ -9,11 +9,11 @@ https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-regi
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account
 ```buildoutcfg
 
-kubectl run myapp --image='gcr.io/aerial-utility-246511/flask-myapp:latest' --port 5000
+kubectl run myapp --image='gcr.io/google-project-name-here/flask-myapp:latest' --port 5000
 
 
 
-export PROJECT=aerial-utility-246511
+export PROJECT=google-project-name-here
 export KEY_NAME=docker-linuxacademy
 export KEY_DISPLAY_NAME=”LinuxAcademyAcct”
 

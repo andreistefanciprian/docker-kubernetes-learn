@@ -10,6 +10,6 @@ spec:
     - /bin/sh
     - -c
     - sleep 3600
-    image: gcr.io/aerial-utility-246511/busybox:1.28.4
+    image: gcr.io/google-project-name-here/busybox:1.28.4
     imagePullPolicy: Always
     name: busybox

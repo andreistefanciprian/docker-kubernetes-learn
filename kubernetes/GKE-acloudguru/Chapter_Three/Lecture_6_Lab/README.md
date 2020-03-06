@@ -3,7 +3,7 @@
 
 ```buildoutcfg
 
-GKE-acloudgurugcloud beta container --project "aerial-utility-246511" \
+GKE-acloudgurugcloud beta container --project "google-project-name-here" \
 clusters create "standard-cluster-1" \
 --zone "europe-west2-c" \
 --no-enable-basic-auth \
@@ -13,8 +13,8 @@ clusters create "standard-cluster-1" \
 --num-nodes "3" \
 --enable-cloud-logging --enable-cloud-monitoring \
 --enable-ip-alias \
---network "projects/aerial-utility-246511/global/networks/default" \
---subnetwork "projects/aerial-utility-246511/regions/europe-west2/subnetworks/default" \
+--network "projects/google-project-name-here/global/networks/default" \
+--subnetwork "projects/google-project-name-here/regions/europe-west2/subnetworks/default" \
 --addons HorizontalPodAutoscaling,HttpLoadBalancing \
 --enable-autoupgrade --enable-autorepair 
 

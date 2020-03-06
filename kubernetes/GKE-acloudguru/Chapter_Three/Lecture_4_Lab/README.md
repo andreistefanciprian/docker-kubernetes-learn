@@ -13,12 +13,12 @@ kubectl apply -f myapp-service.yaml
 # Create IAM service account
 gcloud iam service-accounts create cloudsqlproxy
 # Assign permission to this service account with IAM policy binding
-gcloud projects add-iam-policy-binding aerial-utility-246511 \
---member serviceAccount:cloudsqlproxy@aerial-utility-246511.iam.gserviceaccount.com \
+gcloud projects add-iam-policy-binding google-project-name-here \
+--member serviceAccount:cloudsqlproxy@google-project-name-here.iam.gserviceaccount.com \
 --role roles/cloudsql.client
 # Create key to be used for auth
 gcloud iam service-accounts keys create ./sqlproxy.json \
---iam-account cloudsqlproxy@aerial-utility-246511.iam.gserviceaccount.com
+--iam-account cloudsqlproxy@google-project-name-here.iam.gserviceaccount.com
 
 # Create kubernetes secret
 kubectl create secret generic cloudsql-instance-credentials --from-file=credentials.json=./sqlproxy.json
@@ -33,8 +33,8 @@ kubectl logs pod/myapp-deployment-8578b88fdc-5589j -c cloudsql-proxy
 
 # Enable mysql connection functionality for our app and rebuild docker image
 docker build -t myapp:probes1 .
-docker tag myapp:probes1 gcr.io/aerial-utility-246511/myapp:probes1
-docker push gcr.io/aerial-utility-246511/myapp:probes1
+docker tag myapp:probes1 gcr.io/google-project-name-here/myapp:probes1
+docker push gcr.io/google-project-name-here/myapp:probes1
 ```
 
 ```buildoutcfg

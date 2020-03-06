@@ -12,7 +12,7 @@ Blue Green Deployments
 
 ### Create Standard 3-node GKE Cluster
 ```buildoutcfg
-gcloud beta container --project "aerial-utility-246511" \
+gcloud beta container --project "google-project-name-here" \
 clusters create "standard-cluster-1" \
 --zone "europe-west2-c" \
 --no-enable-basic-auth \
@@ -22,8 +22,8 @@ clusters create "standard-cluster-1" \
 --num-nodes "3" \
 --enable-cloud-logging --enable-cloud-monitoring \
 --enable-ip-alias \
---network "projects/aerial-utility-246511/global/networks/default" \
---subnetwork "projects/aerial-utility-246511/regions/europe-west2/subnetworks/default" \
+--network "projects/google-project-name-here/global/networks/default" \
+--subnetwork "projects/google-project-name-here/regions/europe-west2/subnetworks/default" \
 --addons HorizontalPodAutoscaling,HttpLoadBalancing \
 --enable-autoupgrade --enable-autorepair
 ```
@@ -36,18 +36,18 @@ gcloud container clusters get-credentials standard-cluster-1 --zone=europe-west2
 ### Create blue/green images of myapp
 ```buildoutcfg
 # Create myapp:v1 docker image and push it to GCR
-gcloud builds submit --tag gcr.io/aerial-utility-246511/myapp:v1
+gcloud builds submit --tag gcr.io/google-project-name-here/myapp:v1
 #or
 docker build -t myapp .
-docker tag myapp gcr.io/aerial-utility-246511/myapp:v1 && docker push gcr.io/aerial-utility-246511/myapp:v1
+docker tag myapp gcr.io/google-project-name-here/myapp:v1 && docker push gcr.io/google-project-name-here/myapp:v1
 
 # Create myapp:v3 docker image and push it to GCR
 docker build -t myapp .
-docker tag myapp gcr.io/aerial-utility-246511/myapp:v2 && docker push gcr.io/aerial-utility-246511/myapp:v2
+docker tag myapp gcr.io/google-project-name-here/myapp:v2 && docker push gcr.io/google-project-name-here/myapp:v2
 
 # Create myapp:v3 docker image and push it to GCR
 docker build -t myapp .
-docker tag myapp gcr.io/aerial-utility-246511/myapp:v3 && docker push gcr.io/aerial-utility-246511/myapp:v3
+docker tag myapp gcr.io/google-project-name-here/myapp:v3 && docker push gcr.io/google-project-name-here/myapp:v3
 
 ```
 

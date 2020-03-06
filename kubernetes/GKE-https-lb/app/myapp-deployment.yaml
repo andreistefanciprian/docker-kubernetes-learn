@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myapp
-#        image: gcr.io/aerial-utility-246511/nginx-custom-image
+#        image: gcr.io/google-project-name-here/nginx-custom-image
         image: nginx
         ports:
         - containerPort: 80

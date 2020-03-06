@@ -25,7 +25,7 @@ kubectl label ns default istio-injection=enabled
 
 
 # tests
-APP_ADDRESS=34.77.231.234
+APP_ADDRESS=1.1.1.1
 cmd="curl --header 'x-myval: 192' http://${APP_ADDRESS}:30080/api/vehicles/driver/City%20Truck"
 while true; do $cmd; echo; sleep 0.5; done
 

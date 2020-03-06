@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: gcr.io/aerial-utility-246511/myapp:blue
+        image: gcr.io/google-project-name-here/myapp:blue
         ports:
         - containerPort: 8888
 

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: gcr.io/aerial-utility-246511/myapp:probes2
+        image: gcr.io/google-project-name-here/myapp:probes2
         ports:
         - containerPort: 8888
         livenessProbe:
@@ -37,7 +37,7 @@ spec:
       - name: cloudsql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.11
         command: ["/cloud_sql_proxy",
-                  "-instances=aerial-utility-246511:us-central1:ciptestdb=tcp:3306",
+                  "-instances=google-project-name-here:us-central1:ciptestdb=tcp:3306",
                   "-credential_file=/secrets/cloudsql/credentials.json"]
         securityContext:
           runAsUser: 2
