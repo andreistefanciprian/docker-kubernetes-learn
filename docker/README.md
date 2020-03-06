@@ -10,9 +10,12 @@ docker container run --help
 ```buildoutcfg
 # Run nginx (alpine image) docker container on 8080 locahost port, 80 docker port
 docker container run --publish 8080:80 --detach --name web1 nginx:alpine
+
 # Run container and command inside the container
 docker container run --publish 8080:80 --detach --name web1 nginx:alpine nginx -t
 
+# Run container with interactive prompt
+docker container run --rm -ti --name web1 nginx:alpine /bin/sh
 
 
 ```
